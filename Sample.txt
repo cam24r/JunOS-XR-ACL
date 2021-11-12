@@ -1,0 +1,298 @@
+set firewall family inet filter xlo0-v8-in interface-specific
+set firewall family inet filter xlo0-v8-in term protect-router-60010-vrrp-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60010-vrrp-accept from destination-prefix-list vrrp-addresses
+set firewall family inet filter xlo0-v8-in term protect-router-60010-vrrp-accept from protocol vrrp
+set firewall family inet filter xlo0-v8-in term protect-router-60010-vrrp-accept from protocol ah
+set firewall family inet filter xlo0-v8-in term protect-router-60010-vrrp-accept then count protect-router-60010-vrrp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60010-vrrp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from source-prefix-list core-bgp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from source-prefix-list wan-transit
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from source-prefix-list wan-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from source-prefix-list dc-transit
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from source-prefix-list dc-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept from destination-port 3784-3785
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept then count protect-router-60020-bfd-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60020-bfd-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept from source-prefix-list wan-transit
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept from source-prefix-list wan-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept from source-prefix-list dc-transit
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept from source-prefix-list dc-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept from port 4784
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept then count protect-router-60022-bfd-multihop-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60022-bfd-multihop-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept from source-prefix-list core-bgp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept from source-prefix-list vrf-bgp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept from destination-port 179
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept from tcp-flags "(syn&!ack)|fin|rst"
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept then count protect-router-60030-bgp-tcpsesn-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60030-bgp-tcpsesn-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60032-bgp-accept from source-prefix-list core-bgp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60032-bgp-accept from source-prefix-list vrf-bgp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60032-bgp-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60032-bgp-accept from port 179
+set firewall family inet filter xlo0-v8-in term protect-router-60032-bgp-accept then count protect-router-60032-bgp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60032-bgp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from source-prefix-list all-ldp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from source-prefix-list wan-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from source-prefix-list dc-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from destination-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from destination-port 646
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept from tcp-flags "(syn&!ack)|fin|rst"
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept then count protect-router-60042-ldp-tcpsesn-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60042-ldp-tcpsesn-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from source-prefix-list all-ldp-neighbors
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from source-prefix-list wan-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from source-prefix-list dc-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from destination-prefix-list multicast-all-routers
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from destination-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept from port 646
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept then count protect-router-60044-ldp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60044-ldp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60050-ospf-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60050-ospf-accept from destination-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60050-ospf-accept from destination-prefix-list ospf-addresses
+set firewall family inet filter xlo0-v8-in term protect-router-60050-ospf-accept from protocol ospf
+set firewall family inet filter xlo0-v8-in term protect-router-60050-ospf-accept then count protect-router-60050-ospf-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60050-ospf-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60060-pim-accept from protocol pim
+set firewall family inet filter xlo0-v8-in term protect-router-60060-pim-accept then policer term-specific-1m
+set firewall family inet filter xlo0-v8-in term protect-router-60060-pim-accept then count protect-router-60060-pim-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60060-pim-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept from destination-prefix-list rip-addresses
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept from destination-port 520
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept then policer term-specific-5m
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept then count protect-router-60070-rip-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60070-rip-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60072-rsvp-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60072-rsvp-accept from source-prefix-list wan-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60072-rsvp-accept from source-prefix-list dc-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60072-rsvp-accept from protocol rsvp
+set firewall family inet filter xlo0-v8-in term protect-router-60072-rsvp-accept then count protect-router-60072-rsvp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60072-rsvp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60080-icmp-accept from protocol icmp
+set firewall family inet filter xlo0-v8-in term protect-router-60080-icmp-accept then policer term-specific-15m
+set firewall family inet filter xlo0-v8-in term protect-router-60080-icmp-accept then count protect-router-60080-icmp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60080-icmp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60086-snmp-accept from source-prefix-list auth-access
+set firewall family inet filter xlo0-v8-in term protect-router-60086-snmp-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60086-snmp-accept from destination-port 161
+set firewall family inet filter xlo0-v8-in term protect-router-60086-snmp-accept then count protect-router-60086-snmp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60086-snmp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept from source-prefix-list auth-access
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept from destination-port 22-23
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept from tcp-flags "(syn&!ack)|fin|rst"
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept then count protect-router-60090-cli-tcpsesn-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60090-cli-tcpsesn-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60092-core-cli-accept from source-prefix-list auth-access
+set firewall family inet filter xlo0-v8-in term protect-router-60092-core-cli-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60092-core-cli-accept from destination-port 22-23
+set firewall family inet filter xlo0-v8-in term protect-router-60092-core-cli-accept then count protect-router-60092-core-cli-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60092-core-cli-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept from source-prefix-list auth-access
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept from destination-port 830
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept from tcp-flags "(syn&!ack)|fin|rst"
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept then count protect-router-60094-netconf-tcpsesn-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60094-netconf-tcpsesn-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60096-netconf-accept from source-prefix-list auth-access
+set firewall family inet filter xlo0-v8-in term protect-router-60096-netconf-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60096-netconf-accept from destination-port 830
+set firewall family inet filter xlo0-v8-in term protect-router-60096-netconf-accept then count protect-router-60096-netconf-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60096-netconf-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept from source-prefix-list auth-access
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept from source-port 22-23
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept from tcp-established
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept then policer term-specific-1m
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept then count protect-router-60098-ce-cli-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60098-ce-cli-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60100-igmp-accept from protocol igmp
+set firewall family inet filter xlo0-v8-in term protect-router-60100-igmp-accept then policer term-specific-1m
+set firewall family inet filter xlo0-v8-in term protect-router-60100-igmp-accept then count protect-router-60100-igmp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60100-igmp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept from source-prefix-list core-msdp-peers
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept from destination-port 639
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept from tcp-flags "(syn&!ack)|fin|rst"
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept then count protect-router-60120-msdp-sesn-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60120-msdp-sesn-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60122-msdp-accept from source-prefix-list core-msdp-peers
+set firewall family inet filter xlo0-v8-in term protect-router-60122-msdp-accept from protocol tcp
+set firewall family inet filter xlo0-v8-in term protect-router-60122-msdp-accept from port 639
+set firewall family inet filter xlo0-v8-in term protect-router-60122-msdp-accept then count protect-router-60122-msdp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60122-msdp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept from source-address 0.0.0.0/32
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept from destination-address 255.255.255.255/32
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept from source-prefix-list all-local-segments
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept from source-port 68
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept from destination-port 67
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept then policer term-specific-10m
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept then count protect-router-60130-dhcp-client-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60130-dhcp-client-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept from source-prefix-list dhcp-global-servers
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept from source-prefix-list dhcp-interface-servers
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept from source-port 67
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept from destination-port 67
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept then count protect-router-60132-dhcp-svr-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60132-dhcp-svr-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60140-radius-accept from source-prefix-list radius-servers
+set firewall family inet filter xlo0-v8-in term protect-router-60140-radius-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60140-radius-accept from source-port 1645-1646
+set firewall family inet filter xlo0-v8-in term protect-router-60140-radius-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60140-radius-accept then count protect-router-60140-radius-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60140-radius-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60150-tracert-udp-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60150-tracert-udp-accept from destination-port 33434-33525
+set firewall family inet filter xlo0-v8-in term protect-router-60150-tracert-udp-accept then policer term-specific-1m
+set firewall family inet filter xlo0-v8-in term protect-router-60150-tracert-udp-accept then count protect-router-60150-tracert-udp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60150-tracert-udp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept from source-prefix-list wan-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept from source-prefix-list dc-lo0
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept from port 3503
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept then policer term-specific-5m
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept then count protect-router-60160-mpls-ping-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60160-mpls-ping-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept from source-prefix-list ntp-servers
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept from source-prefix-list self-loopback
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept from port 123
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept then policer term-specific-64k
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept then count protect-router-60170-ntp-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60170-ntp-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60180-gre-accept from source-prefix-list gre-destination
+set firewall family inet filter xlo0-v8-in term protect-router-60180-gre-accept from destination-prefix-list gre-source
+set firewall family inet filter xlo0-v8-in term protect-router-60180-gre-accept from protocol gre
+set firewall family inet filter xlo0-v8-in term protect-router-60180-gre-accept then count protect-router-60180-gre-accept
+set firewall family inet filter xlo0-v8-in term protect-router-60180-gre-accept then accept
+set firewall family inet filter xlo0-v8-in term protect-router-60190-netbios-discard from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60190-netbios-discard from destination-port 137-139
+set firewall family inet filter xlo0-v8-in term protect-router-60190-netbios-discard then count protect-router-60190-netbios-discard
+set firewall family inet filter xlo0-v8-in term protect-router-60190-netbios-discard then discard
+set firewall family inet filter xlo0-v8-in term protect-router-60192-cpcluster-discard from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60192-cpcluster-discard from source-port 8116
+set firewall family inet filter xlo0-v8-in term protect-router-60192-cpcluster-discard from destination-port 8116
+set firewall family inet filter xlo0-v8-in term protect-router-60192-cpcluster-discard then count protect-router-60192-cpcluster-discard
+set firewall family inet filter xlo0-v8-in term protect-router-60192-cpcluster-discard then discard
+set firewall family inet filter xlo0-v8-in term protect-router-60193-hmc-discovery-discard from protocol udp
+set firewall family inet filter xlo0-v8-in term protect-router-60193-hmc-discovery-discard from destination-port 9900
+set firewall family inet filter xlo0-v8-in term protect-router-60193-hmc-discovery-discard then count protect-router-60193-hmc-discovery-discard
+set firewall family inet filter xlo0-v8-in term protect-router-60193-hmc-discovery-discard then discard
+set firewall family inet filter xlo0-v8-in term protect-router-60999-log-discard then count protect-router-60999-log-discard
+set firewall family inet filter xlo0-v8-in term protect-router-60999-log-discard then log
+set firewall family inet filter xlo0-v8-in term protect-router-60999-log-discard then discard
+set firewall family inet filter ofce-v46-out interface-specific
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from source-address 192.168.0.0/15
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from source-address 10.0.0.0/15
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from source-address 172.16.0.0/15
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from destination-address 192.168.1.0/24
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from destination-address 10.1.1.0/24
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from destination-address 172.16.18.0/24
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from protocol tcp
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli from destination-port 22-23
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli then count ofce-201-10-16-pecli
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli then loss-priority low
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli then forwarding-class q1
+set firewall family inet filter ofce-v46-out term ofce-201-10-16-pecli then accept
+set firewall family inet filter ofce-v46-out term ofce-301-60-48-dirsrv from protocol udp
+set firewall family inet filter ofce-v46-out term ofce-301-60-48-dirsrv from source-port 48129
+set firewall family inet filter ofce-v46-out term ofce-301-60-48-dirsrv then count ofce-301-60-48-dirsrv
+set firewall family inet filter ofce-v46-out term ofce-301-60-48-dirsrv then loss-priority low
+set firewall family inet filter ofce-v46-out term ofce-301-60-48-dirsrv then forwarding-class sc
+set firewall family inet filter ofce-v46-out term ofce-301-60-48-dirsrv then accept
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas from protocol tcp
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas from source-port 11639
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas from tcp-established
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas then count ofce-307-60-48-aas
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas then loss-priority low
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas then forwarding-class sc
+set firewall family inet filter ofce-v46-out term ofce-307-60-48-aas then accept
+set firewall family inet filter ofce-v46-out term discard-all then count discard-all
+set firewall family inet filter ofce-v46-out term discard-all then discard
+set firewall family inet filter ofce-v46-in interface-specific
+set firewall family inet filter ofce-v46-in term ofce-20-destination-keep from destination-address 69.184.0.0/16 except
+set firewall family inet filter ofce-v46-in term ofce-20-destination-keep from destination-address 160.43.3.0/24 except
+set firewall family inet filter ofce-v46-in term ofce-20-destination-keep from destination-address 0.0.0.0/0
+set firewall family inet filter ofce-v46-in term ofce-20-destination-keep then count ofce-20-destination-keep
+set firewall family inet filter ofce-v46-in term ofce-20-destination-keep then discard
+set firewall family inet filter ofce-v46-in term ofce-30-nat2wan-discard from source-address 132.6.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-30-nat2wan-discard from source-address 21.0.0.0/13
+set firewall family inet filter ofce-v46-in term ofce-30-nat2wan-discard from destination-address 131.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-30-nat2wan-discard from destination-address 224.0.0.13/32
+set firewall family inet filter ofce-v46-in term ofce-30-nat2wan-discard then count ofce-30-nat2wan-discard
+set firewall family inet filter ofce-v46-in term ofce-30-nat2wan-discard then discard
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from source-address 191.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from source-address 192.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from source-address 193.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from source-address 124.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from source-address 172.196.0.0/14
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from destination-address 191.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from destination-address 192.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from destination-address 193.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from destination-address 124.0.0.0/15
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from destination-address 172.196.0.0/14
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from protocol udp
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd from destination-port 3784
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd then count ofce-106-70-56-cebfd
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd then loss-priority low
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd then forwarding-class nc
+set firewall family inet filter ofce-v46-in term ofce-106-70-56-cebfd then accept
+set firewall family inet filter ofce-v46-in term ofce-300-60-48-dirsrv from protocol udp
+set firewall family inet filter ofce-v46-in term ofce-300-60-48-dirsrv from destination-port 48129
+set firewall family inet filter ofce-v46-in term ofce-300-60-48-dirsrv then count ofce-300-60-48-dirsrv
+set firewall family inet filter ofce-v46-in term ofce-300-60-48-dirsrv then loss-priority low
+set firewall family inet filter ofce-v46-in term ofce-300-60-48-dirsrv then forwarding-class sc
+set firewall family inet filter ofce-v46-in term ofce-300-60-48-dirsrv then accept
+set firewall family inet filter ofce-v46-in term ofce-330-40-32-bfonvid from protocol udp
+set firewall family inet filter ofce-v46-in term ofce-330-40-32-bfonvid from destination-port 48134
+set firewall family inet filter ofce-v46-in term ofce-330-40-32-bfonvid then count ofce-330-40-32-bfonvid
+set firewall family inet filter ofce-v46-in term ofce-330-40-32-bfonvid then loss-priority low
+set firewall family inet filter ofce-v46-in term ofce-330-40-32-bfonvid then forwarding-class q4
+set firewall family inet filter ofce-v46-in term ofce-330-40-32-bfonvid then accept
+set firewall family inet filter ofce-v46-in term ofce-364-20-18-sfn from protocol tcp
+set firewall family inet filter ofce-v46-in term ofce-364-20-18-sfn from destination-port 8293
+set firewall family inet filter ofce-v46-in term ofce-364-20-18-sfn then count ofce-364-20-18-sfn
+set firewall family inet filter ofce-v46-in term ofce-364-20-18-sfn then loss-priority low
+set firewall family inet filter ofce-v46-in term ofce-364-20-18-sfn then forwarding-class q2
+set firewall family inet filter ofce-v46-in term ofce-364-20-18-sfn then accept
+set firewall family inet filter ofce-v46-in term discard-all then count discard-all
+set firewall family inet filter ofce-v46-in term discard-all then discard
+set firewall policer term-specific-1m if-exceeding bandwidth-limit 1m
+set firewall policer term-specific-1m if-exceeding burst-size-limit 200k
+set firewall policer term-specific-1m then discard
+set firewall policer term-specific-5m if-exceeding bandwidth-limit 5m
+set firewall policer term-specific-5m if-exceeding burst-size-limit 1m
+set firewall policer term-specific-5m then discard
+set firewall policer network-control-5m filter-specific
+set firewall policer network-control-5m if-exceeding bandwidth-limit 5m
+set firewall policer network-control-5m if-exceeding burst-size-limit 1m
+set firewall policer network-control-5m then discard
+set firewall policer term-specific-64k if-exceeding bandwidth-limit 64k
+set firewall policer term-specific-64k if-exceeding burst-size-limit 3002
+set firewall policer term-specific-64k then discard
+set firewall policer term-specific-15m if-exceeding bandwidth-limit 15m
+set firewall policer term-specific-15m if-exceeding burst-size-limit 3m
+set firewall policer term-specific-15m then discard
+set firewall policer term-specific-10m if-exceeding bandwidth-limit 10m
+set firewall policer term-specific-10m if-exceeding burst-size-limit 1m
+set firewall policer term-specific-10m then discard
